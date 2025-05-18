@@ -1,0 +1,36 @@
+{
+  "model1.glb": [
+    {
+      "slot": "hotspot-1",
+      "position": "0 0.1 0",
+      "normal": "0 1 0",
+      "label": "+",
+      "info": {
+        "title": "Zigoto",
+        "description": "Célula inicial após a fecundação."
+      }
+    }
+  ],
+  "model2.glb": [
+    {
+      "slot": "hotspot-1",
+      "position": "-0.034 0.004 0.015",
+      "normal": "0 1 0",
+      "label": "+",
+      "info": {
+        "title": "BLASTOCELL",
+        "description": "Escrever para Blastocélula"
+      }
+    },
+    {
+      "slot": "hotspot-2",
+      "position": "-0.079 -0.014 0.015",
+      "normal": "0 1 0",
+      "label": "+",
+      "info": {
+        "title": "ECTODERME",
+        "description": "Escrever para ECTODERME"
+      }
+    }
+  ]
+}
