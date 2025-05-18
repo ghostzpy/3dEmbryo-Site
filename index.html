@@ -1,59 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>AR Model Embryo Teste</title>
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <link rel="stylesheet" href="src/themes/style.css" />
-    <link rel="stylesheet" href="src/themes/popup.css" />
-    <link rel="stylesheet" href="src/themes/hotspot.css" />
-  </head>
-  <body>
-    <div class="container">
-      <aside class="sidebar" id="modelButtons"></aside>
 
-      <main class="viewer">
-        <model-viewer
-          id="modelViewer"
-          src=""
-          ios-src="model.usdz"
-          alt="3D model"
-          ar
-          ar-scale="fixed"
-          ar-modes="scene-viewer webxr quick-look"
-          camera-controls
-          auto-rotate
-          environment-image="neutral"
-          shadow-intensity="0"
-          interaction-prompt="none">
-        </model-viewer>
-      </main>
+<head>
+  <meta charset="UTF-8" />
+  <title>AR Model Embryo Teste</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link rel="stylesheet" href="src/themes/style.css" />
+  <link rel="stylesheet" href="src/themes/popup.css" />
+  <link rel="stylesheet" href="src/themes/hotspot.css" />
+</head>
+
+<body>
+  <div class="container">
+    <aside class="sidebar" id="modelButtons"></aside>
+
+    <main class="viewer">
+      <model-viewer id="modelViewer" src="" ios-src="model.usdz" alt="3D model" camera-controls auto-rotate
+        environment-image="neutral" shadow-intensity="0" interaction-prompt="none">
+      </model-viewer>
+    </main>
+  </div>
+
+  <!-- Popup -->
+  <div id="popup" class="popup hidden">
+    <div id="popup-content" class="box">
+      <span id="popup-title" class="title"></span>
+      <div>
+        <p id="popup-description"></p>
+      </div>
+      <button onclick="document.getElementById('popup').classList.add('hidden')">
+        Fechar
+      </button>
+    </div>
+  </div>
+
+  <div class="toolbar-container">
+    <div id="lockToggle" class="toolbar-button" title="Travar/destravar rotação">
+      <svg id="lockIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+        <path
+          d="M12 17a1.5 1.5 0 0 0 0-3 1.5 1.5 0 0 0 0 3Zm6-6h-1V9a5 5 0 1 0-10 0v2H6a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1ZM9 9a3 3 0 1 1 6 0v2H9Z" />
+      </svg>
     </div>
 
-    <!-- Popup -->
-    <div id="popup" class="popup hidden">
-      <div id="popup-content" class="box">
-        <span id="popup-title" class="title"></span>
-        <div>
-          <p id="popup-description"></p>
-        </div>
-        <button onclick="document.getElementById('popup').classList.add('hidden')">Fechar</button>
-      </div>
+    <div id="returnView" class="toolbar-button" title="Centralizar Visão">
+      <img
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADqklEQVR4nO2YR2gVURSGn31hYu8V7AsVXLmybX2K2LHEiIJgQQTdiRs7Vtype8EaFLtiLwsVbJCgqAtdqKhgA1v0kwP/4OVl7szkvahZ3B8emdxT5px7T7uTywUEBAQEBAQEBDR6AG2AicAm4BhQA7wBvur3RmtHxTMBKM81BgDlwHzgAvCD+sNkzgOV/8UpoC+wA/hQYNgDYCswGRgKtAda6GfPw4ApwEbgGlDryJqubUDvf+FAZ2AX8K3AgbVAjyL0dZJTLr4CO432t5yYB7zTy345oXSoRL1NgOPSVSvdhrdARUOH0Rlnx64DeZ3Kd6N75CYBl4HP+l2yYuDhHaCN+SHdV5z3nQL6lOrETOCjs0OV2sFFWtvnkduckOAbPDIHRF+i/ytU6ZANM4pxoLmSOcI5oKtDP6n1WZ6TSMOEGLm5op121ro40fBLhaR5VifaKQyimF0DNC3geSF6/xh5C6c0XIyRGyja84L1psBqp8JZqW+X5kR3lVB0rOM8fFZZDK1jaJ8yOPIxRq5MtC+ed451Qu0e0M3nRB/gmRjt76AEh6O8KW9AR6y5xtIcnkGOjU/r9BzzDngshrteb//wPxJvHWedsEzChRi5waLVZIgaOxFkxx9bgZsi3Ac6JikSv5VEX7LbvJWGfIzcHNFOZGykZqvhhku4ocWHbnVKULRU/Ps99A0JTqzzyBwUfXGG93eVrXUccUOr2o4vRVEvNS9riv08PDbdXlTOfFK1ySc0RNNlOnumvLuHpui6oeUk+1OHIdZAh3+veA/nSgRQJV27U/j6Oxv+xDtgKpGi2LNSNyplZ6LqtbIEJ1ZJx/ukIgOM0XSRqSBFDdHCAB33chtLPLyW2D/VrFYW6UStdPjCzkaiFc7EbfeXtvUZUexuEOGEjfAe3mUyxHAkrtt7ciIKJ5Nd6uHr4oxDNqJsAZplciJhaHypUb6JJ7GjS9Y3VaDZwBB17DI9W4k9pKk5Cqe85xQqgVfiMxum19uBmFywe3aEW8BIT23flfHKazx74qojMEJXhQinfVeFYh2qcJLtpz4wjI7h62m9QCFR7ZTfaoXo4rgSq1nquBOmVmzmNpgDMbu+wxkaDbeBBUCHIvR1BBYCdxx9X4DtWSaMkmH1W8XA/fhgcX8VWA9MBYbL0JZAKz3b2jR1/msFYWj5siWtIf4th8qVlOecBK4PTOasikhZrjFAlSmv3a5STrx2PtC91lqVeMY3GuMDAgICAgICAgJySfgNwTwiPn4hTlEAAAAASUVORK5CYII="
+        alt="visible--v1" />
     </div>
+  </div>
 
-    <div class="toolbar-container">
-      <div id="lockToggle" class="toolbar-button" title="Travar/destravar rotação">
-        <svg id="lockIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
-          <path d="M12 17a1.5 1.5 0 0 0 0-3 1.5 1.5 0 0 0 0 3Zm6-6h-1V9a5 5 0 1 0-10 0v2H6a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1ZM9 9a3 3 0 1 1 6 0v2H9Z"/>
-        </svg>
-      </div>
+  <script type="module" src="src/js/main.js"></script>
+</body>
 
-      <div id="returnView" class="toolbar-button" title="Centralizar Visão">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADqklEQVR4nO2YR2gVURSGn31hYu8V7AsVXLmybX2K2LHEiIJgQQTdiRs7Vtype8EaFLtiLwsVbJCgqAtdqKhgA1v0kwP/4OVl7szkvahZ3B8emdxT5px7T7uTywUEBAQEBAQEBDR6AG2AicAm4BhQA7wBvur3RmtHxTMBKM81BgDlwHzgAvCD+sNkzgOV/8UpoC+wA/hQYNgDYCswGRgKtAda6GfPw4ApwEbgGlDryJqubUDvf+FAZ2AX8K3AgbVAjyL0dZJTLr4CO432t5yYB7zTy345oXSoRL1NgOPSVSvdhrdARUOH0Rlnx64DeZ3Kd6N75CYBl4HP+l2yYuDhHaCN+SHdV5z3nQL6lOrETOCjs0OV2sFFWtvnkduckOAbPDIHRF+i/ytU6ZANM4pxoLmSOcI5oKtDP6n1WZ6TSMOEGLm5op121ro40fBLhaR5VifaKQyimF0DNC3geSF6/xh5C6c0XIyRGyja84L1psBqp8JZqW+X5kR3lVB0rOM8fFZZDK1jaJ8yOPIxRq5MtC+ed451Qu0e0M3nRB/gmRjt76AEh6O8KW9AR6y5xtIcnkGOjU/r9BzzDngshrteb//wPxJvHWedsEzChRi5waLVZIgaOxFkxx9bgZsi3Ac6JikSv5VEX7LbvJWGfIzcHNFOZGykZqvhhku4ocWHbnVKULRU/Ps99A0JTqzzyBwUfXGG93eVrXUccUOr2o4vRVEvNS9riv08PDbdXlTOfFK1ySc0RNNlOnumvLuHpui6oeUk+1OHIdZAh3+veA/nSgRQJV27U/j6Oxv+xDtgKpGi2LNSNyplZ6LqtbIEJ1ZJx/ukIgOM0XSRqSBFDdHCAB33chtLPLyW2D/VrFYW6UStdPjCzkaiFc7EbfeXtvUZUexuEOGEjfAe3mUyxHAkrtt7ciIKJ5Nd6uHr4oxDNqJsAZplciJhaHypUb6JJ7GjS9Y3VaDZwBB17DI9W4k9pKk5Cqe85xQqgVfiMxum19uBmFywe3aEW8BIT23flfHKazx74qojMEJXhQinfVeFYh2qcJLtpz4wjI7h62m9QCFR7ZTfaoXo4rgSq1nquBOmVmzmNpgDMbu+wxkaDbeBBUCHIvR1BBYCdxx9X4DtWSaMkmH1W8XA/fhgcX8VWA9MBYbL0JZAKz3b2jR1/msFYWj5siWtIf4th8qVlOecBK4PTOasikhZrjFAlSmv3a5STrx2PtC91lqVeMY3GuMDAgICAgICAgJySfgNwTwiPn4hTlEAAAAASUVORK5CYII=" alt="visible--v1">
-      </div>
-    </div>
-
-
-    <script type="module" src="src/js/main.js"></script>
-  </body>
 </html>

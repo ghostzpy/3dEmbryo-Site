@@ -2,10 +2,12 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 1000; /* Garante que fique por cima */
+  z-index: 1000;
+  /* Garante que fique por cima */
   color: white;
   font-family: sans-serif;
-  pointer-events: auto; /* Garante que cliques funcionem */
+  pointer-events: auto;
+  /* Garante que cliques funcionem */
 }
 
 
