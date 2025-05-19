@@ -5,9 +5,7 @@
   <meta charset="UTF-8" />
   <title>AR Model Embryo Teste</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <link rel="stylesheet" href="src/themes/style.css" />
-  <link rel="stylesheet" href="src/themes/popup.css" />
-  <link rel="stylesheet" href="src/themes/hotspot.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -15,8 +13,8 @@
     <aside class="sidebar" id="modelButtons"></aside>
 
     <main class="viewer">
-      <model-viewer id="modelViewer" src="" ios-src="model.usdz" alt="3D model" camera-controls auto-rotate
-        environment-image="neutral" shadow-intensity="0" interaction-prompt="none">
+      <model-viewer id="modelViewer" src="" ios-src="model.usdz" alt="3D model" auto-rotate
+        environment-image="neutral" shadow-intensity="0" interaction-prompt="none" interaction-prompt="none" field-of-view="10deg">
       </model-viewer>
     </main>
   </div>
@@ -28,7 +26,7 @@
       <div>
         <p id="popup-description"></p>
       </div>
-      <button onclick="document.getElementById('popup').classList.add('hidden')">
+      <button class="popup-box-button" onclick="document.getElementById('popup').classList.add('hidden')">
         Fechar
       </button>
     </div>

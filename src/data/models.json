@@ -1,4 +1,14 @@
 [
-  { "file": "model1.glb", "label": "Zigoto" },
-  { "file": "model2.glb", "label": "Blástula" }
+  {
+    "file": "model1.glb",
+    "label": "Zigoto",
+    "fov": "900deg",
+    "orbit": "0deg 90deg 2.5m"
+  },
+  {
+    "file": "model2.glb",
+    "label": "Blástula",
+    "fov": "10deg",
+    "orbit": "45deg 60deg 3m"
+  }
 ]
